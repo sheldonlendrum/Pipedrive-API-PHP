@@ -12,7 +12,7 @@
         var $api_url = 'https://api.pipedrive.com/v1/';
 
         // private token
-        private $api_token;
+        private $api_token = '9082e5c7320ad69bc1df1d57e83babef58c82425';
 
         // set input type, for PUT or DELETE request.
         private $input_type;
@@ -54,9 +54,12 @@
                 return FALSE;
             }
 
+            $delim = '?';
+            if(strpos($method, '?') !== FALSE) $delim = '&';
+
             // set up URL, params and API Token.
             $params['api_token'] = $this->api_token;
-            $this->url = $this->api_url . $method .'?'. http_build_query($params);
+            $this->url = $this->api_url . $method . $delim . http_build_query($params);
 
 
             // Build cURL
