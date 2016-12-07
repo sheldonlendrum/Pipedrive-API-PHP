@@ -84,3 +84,22 @@
         echo $pipedrive_api->errors(); 
 
     }
+    
+## Example: Find Perons by Email
+    
+    <?php 
+    $pipedrive_api = new Pipedrive_api('PIPEDRIVE_API_KEY');
+    
+    $email = 'user@domain.tld'; 
+    
+    $person = $pipedrive_api->request('person/find?term=' . urlencode($email) .'&search_by_email=1');
+
+    if($person->success === TRUE) {
+
+        print_r($person->data); 
+
+    } else {
+        
+        echo $pipedrive_api->errors(); 
+
+    }
